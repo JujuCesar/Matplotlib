@@ -6,6 +6,7 @@ import matplotlib.pyplot as plt
 dfPaises = pd.read_csv("paises.csv", delimiter=";")
 
 # Filtrando apenas países da América do Norte
+dfPaises["Region"] = dfPaises["Region"].str.strip().str.upper() # Filtra espaços em branco e deixa tudo maiúsculo
 dfAmericaNorte = dfPaises[dfPaises["Region"] == "NORTHERN AMERICA"]
 
 # Pegando os nomes dos países, taxas de mortalidade e natalidade
@@ -18,6 +19,7 @@ plt.figure(figsize=(12, 6))  # Define tamanho do gráfico
 plt.plot(paises, taxa_mortalidade, label="Taxa de Mortalidade", marker="o", linestyle="--", color="red", markersize=8, alpha=0.8)
 plt.plot(paises, taxa_natalidade, label="Taxa de Natalidade", marker="s", linestyle="-", color="blue", markersize=8, alpha=0.8)
 
+
 # Personalizando o gráfico
 plt.xlabel("Países da América do Norte")
 plt.ylabel("Taxa por 1000 habitantes")
@@ -27,3 +29,4 @@ plt.grid(True)  # Adiciona grade para melhor leitura
 
 # Exibir gráfico
 plt.show()
+
